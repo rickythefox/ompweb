@@ -199,7 +199,7 @@ export async function resolveProject(cwd: string): Promise<ProjectInfo> {
     };
   } catch {
     const inferred = inferRemovedWorktree(cwd);
-    info = inferred ?? { projectRoot: cwd, branch: null, isWorktree: false, isTopLevel: false };
+    info = inferred ?? { projectRoot: realPathOrSelf(cwd), branch: null, isWorktree: false, isTopLevel: false };
   }
 
   cache.set(cwd, { info, expiresAt: Date.now() + PROJECT_CACHE_TTL_MS });
